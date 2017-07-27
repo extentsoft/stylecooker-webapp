@@ -1,6 +1,15 @@
 # stylecooker-webapp
 StyleCooker Web Application
 
+# Naming Convention
+* develop
+* master
+
+* feat_
+* release_
+* hotfix_
+
+
 # Initiation Log
 1. install express-generator
 2. create repository via github.com
