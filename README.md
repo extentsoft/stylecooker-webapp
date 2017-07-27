@@ -21,7 +21,9 @@ git config --global user.email "thanakorn@extentsoft.com"
 git config --global user.name "Thanakorn Piroonsith"
 
 6. add bootstrap 3/4 references
-7. 
+7. install testing libraries
+
+npm install mocha chai wd chai-as-promised --save-dev
 
 
 # Express generator log
