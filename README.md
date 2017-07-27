@@ -6,7 +6,7 @@ StyleCooker Web Application
 2. create repository via github.com
 3. git clone xxxx.git
 4. generate express web structure with express-generator
-5.
+5. fork new repository as Developer not admin or founder
 
 # Express generator log
 
