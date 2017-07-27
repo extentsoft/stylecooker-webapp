@@ -17,6 +17,13 @@ StyleCooker Web Application
 4. generate express web structure with express-generator
 5. fork new repository as Developer not admin or founder
 
+git config --global user.email "thanakorn@extentsoft.com"
+git config --global user.name "Thanakorn Piroonsith"
+
+6. add bootstrap 3/4 references
+7. 
+
+
 # Express generator log
 
    create : ../../../../stylecooker-webapp
