@@ -29,7 +29,6 @@ describe('Test1 Index Route', function(){
       .returns(promiseMock);
 
     promiseMock.then = sinon.spy();
-
     response.render = sinon.stub();
     response.send = sinon.stub();
 
