@@ -36,6 +36,40 @@ describe('Test1 Index Route', function(){
     test1 = requireTest1({Item: itemMock});
   });
 
+  it('calls the render function with the correct template name', function(){
+    callTest1IndexRoute();
+
+    // Call the promise resolve function
+    promiseMock.then.getCall(0).args[0]({});
+
+    response.render.getCall(0).args.length.should.be.above(0);
+    response.render.getCall(0).args[0].should.equal('test1_index');
+  });
+
+  it('passes the items to the render function', function(){
+    var items = {};
+    callTest1IndexRoute();
+
+    // Call the promise resolve function
+    promiseMock.then.getCall(0).args[0](items);
+
+    var args = response.render.getCall(0).args;
+    args.length.should.be.above(1);
+    args[1].should.be.an.object;
+    args[1].should.have.property('test1');
+    args[1].items.should.equal(items);
+  });
+
+  it('sends a 500 status on error', function(){
+    callTest1IndexRoute();
+
+    // Call the promise reject function
+    promiseMock.then.getCall(0).args[1]({message: "There was an error"});
+
+    response.send.should.have.been.calledOnce;
+    response.send.should.have.been.calledWith(500);
+  });
+
   // Snip - Existing tests removed for brevity
   it('calls the render function', function(){
     callTest1IndexRoute();
