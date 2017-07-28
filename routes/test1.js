@@ -10,10 +10,10 @@ module.exports = function(models){
     index: function(req,res){
       models.Item.itemForIndex()
         .then(function(items){
-          res.render();
+          res.render('test1_index',{items:items});
         },
         function(err){
-
+          res.send(500);
         }
       );
     }

@@ -55,8 +55,8 @@ describe('Test1 Index Route', function(){
 
     var args = response.render.getCall(0).args;
     args.length.should.be.above(1);
-    args[1].should.be.an.object;
-    args[1].should.have.property('test1');
+    //args[1].should.be.an.object;
+    args[1].should.have.property('items');
     args[1].items.should.equal(items);
   });
 
