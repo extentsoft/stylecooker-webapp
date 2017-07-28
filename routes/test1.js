@@ -10,7 +10,7 @@ module.exports = function(models){
     index: function(req,res){
       models.Item.itemForIndex()
         .then(function(items){
-
+          res.render();
         },
         function(err){
 
