@@ -47,6 +47,11 @@ describe('mocha spec examples', function() {
         .title().should.become("Express");
     });
 
+    it("should call f() once", function(){
+      var callback = sinon.spy();
+      
+    })
+
 /*
     it("submit element should be clicked", function() {
       // jshint evil: true

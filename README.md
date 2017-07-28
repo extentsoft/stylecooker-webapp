@@ -23,11 +23,12 @@ git config --global user.name "Thanakorn Piroonsith"
 6. add bootstrap 3/4 references
 7. install testing libraries
 
-npm install mocha chai wd chai-as-promised --save-dev
+** BDD ** npm install mocha chai wd chai-as-promised --save-dev
+** TDD ** npm install sinon sinon-chai --save-dev
+
 
 npm install selenum-webdriver --save-dev
 npm install chromedriver --save-dev
-
 npm install coffee-script --save-dev
 
 8. add test folder
