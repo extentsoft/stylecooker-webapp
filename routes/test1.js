@@ -8,7 +8,14 @@ module.exports = function(models){
       @param res
     */
     index: function(req,res){
-      models.Item.itemForIndex();
+      models.Item.itemForIndex()
+        .then(function(items){
+
+        },
+        function(err){
+
+        }
+      );
     }
   };
 };
