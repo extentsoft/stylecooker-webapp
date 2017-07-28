@@ -11,7 +11,6 @@ var index = require('./routes')({});
 var test1 = index.test1;
 var users = require('./routes/users');
 
-
 var app = express();
 
 // view engine setup
