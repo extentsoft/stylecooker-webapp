@@ -5,6 +5,8 @@ var sinonChai = require('sinon-chai');
 chai.use(sinonChai);
 chai.should();
 
+// Snip - Variable and function declarations removed for brevity
+
 describe('Test1 Index Route', function(){
   var itemMock;     // Object to mock the item model
   var promiseMock;  // Mock for the promise returned by item for index
@@ -28,7 +30,19 @@ describe('Test1 Index Route', function(){
 
     promiseMock.then = sinon.spy();
 
+    response.render = sinon.stub();
+    response.send = sinon.stub();
+
     test1 = requireTest1({Item: itemMock});
+  });
+
+  // Snip - Existing tests removed for brevity
+  it('calls the render function', function(){
+    callTest1IndexRoute();
+
+    // Call the promise resolve function
+    promiseMock.then.getCall(0).args[0]({});
+    response.render.should.have.been.calledOnce;
   });
 
   it('calls Item.itemForIndex', function(){
