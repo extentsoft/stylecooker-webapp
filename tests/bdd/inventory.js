@@ -8,6 +8,63 @@ chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 var browser = wd.promiseChainRemote();
 
+describe('Inventory', function(){
+  describe('Sitemap', function(){
+
+    before(function(done){
+      browser.init({browserName: 'chrome'})
+      .then(function(){
+        done();
+      });
+    });
+
+    after(function(done){
+      browser.quit()
+        .then(function(){
+          done();
+        })
+    });
+
+    it('should render /inventory/', function(done){
+      browser.get('http://localhost:3000/inventory/')
+        .title()
+        .then(function(title){
+          title.should.equal('Inventory');
+        })
+        .nodeify(done);
+    });
+
+    it('should render /inventory/add', function(done){
+      browser.get('http://localhost:3000/inventory/add')
+        .title()
+        .then(function(title){
+          title.should.equal('New Item');
+        })
+        .nodeify(done);
+    });
+
+    it('should render /inventory/update', function(done){
+      browser.get('http://localhost:3000/inventory/edit')
+        .title()
+        .then(function(title){
+          title.should.equal('Edit Item');
+        })
+        .nodeify(done);
+    });
+
+    it('should render /inventory/query', function(done){
+      browser.get('http://localhost:3000/inventory/query')
+        .title()
+        .then(function(title){
+          title.should.equal('Item Search Result');
+        })
+        .nodeify(done);
+    });
+
+  });
+});
+
+
 describe('Inventory Index/Home', function(){
   this.timeout(6000);
 

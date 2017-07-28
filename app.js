@@ -10,6 +10,7 @@ var index = require('./routes')({});
 
 var test1 = index.test1;
 var users = require('./routes/users');
+
 var inventory = require('./routes/inventory');
 var sales = require('./routes/sales');
 var console = require('./routes/console');
