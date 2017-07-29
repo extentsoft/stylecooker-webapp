@@ -1,6 +1,210 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://v4-alpha.getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
   </head>
-  <body></body>
+  <body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-warning">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+         <img src="../images/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/console">Console</a>
+          <a class="nav-item nav-link" href="/sales">Sales <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/inventory">Inventory</a>
+          <a class="nav-item nav-link disabled" href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <h3>New Item</h3>
+          <form>
+            <div class="form-group">
+              <label for="itemNameInput">Item Name</label>
+              <input type="text" class="form-control" id="itemNameInput" aria-describedby="itemNameHelp">
+              <small id="itemNameHelp" class="form-text text-muted">Type Item Name</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">Featured Image</label>
+              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+              <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+            </div>
+
+            <div class="form-group row">
+              <label for="example-color-input" class="col-2 col-form-label">Color</label>
+              <div class="col-10">
+                <input class="form-control" type="color" value="#563d7c" id="example-color-input">
+              </div>
+            </div>
+            <label>Initial Inventory</label>
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">#</span>
+              <input type="text" class="form-control" id="amount_xs" placeholder="XS" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="amount_s" placeholder="S" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="amount_m" placeholder="M" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="amount_l" placeholder="L" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="amount_xl" placeholder="XL" aria-describedby="sizing-addon2">
+            </div>
+            <br/>
+            <label>Portfolio Images</label>
+            <div class="input-group">
+              <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
+              &nbsp;&nbsp;<input type="submit" class="btn btn-secondary" style="padding: 3px 5px;" name="submit_image" value="Upload" />
+            </div>
+            <div class="row" id="image_preview"></div>
+          </form>
+        </div>
+        <div class="col-8">
+          <div class="input-group">
+            <input type="text" class="form-control" style="padding: 3px 5px;" placeholder="Search for ...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" style="padding: 3px 5px;" type="button">Search</button>
+            </span>
+          </div>
+
+          <br/>
+
+          <!-- print catalog in card-group -->
+          <div class="card-group">
+            <div class="card">
+              <img class="card-img-top mx-auto" src="holder.js/150x150" alt="Card image cap">
+              <div class="card-block">
+                <h6 class="card-title">Card title</h6>
+
+                <div class="input-group">
+                  <span class="input-group-addon" id="sizing-addon2">Name</span>
+                  <input type="text" class="form-control" id="amount_xs" placeholder="Card title" aria-describedby="sizing-addon2">
+                </div>
+                <br />
+                <div class="input-group">
+                  <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-btc" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" id="amount_xs" placeholder="1000" aria-describedby="sizing-addon2">
+                </div>
+                <br/>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="sizing-addon2">#</span>
+                      <input type="text" class="form-control" id="amount_xs" placeholder="3" aria-describedby="sizing-addon2">
+                      <input type="text" class="form-control" id="amount_s" placeholder="2" aria-describedby="sizing-addon2">
+                      <input type="text" class="form-control" id="amount_m" placeholder="1" aria-describedby="sizing-addon2">
+                      <input type="text" class="form-control" id="amount_l" placeholder="2" aria-describedby="sizing-addon2">
+                      <input type="text" class="form-control" id="amount_xl" placeholder="0" aria-describedby="sizing-addon2">
+                    </div>
+                  </div>
+                </div>
+                <p class="card-text"><small class="text-muted">XS | S | M | L | XL</small></p>
+                <button type="button" class="btn btn-warning">Save</button>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <button type="button" class="btn btn-warning">Save</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="card-group">
+
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
+          <div class="card-group">
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      <br/>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- Helper Libraries -->
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/anchor.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/clipboard.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/jekyll-search.min.js"></script>
+
+    <!-- Initial Script to Enable Helper Libraries -->
+    <script>
+      /*SimpleJekyllSearch.init({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        searchResultTemplate: '<a class="dropdown-item" href="{url}">{title}</a>',
+        noResultsText: '<div class="dropdown-item no-results">Sorry, there are no results for that search.</div>',
+        json: '/search.json'
+      })*/
+    </script>
+    <script>
+      Holder.addTheme('gray', {
+        bg: '#777',
+        fg: 'rgba(255,255,255,.75)',
+        font: 'Helvetica',
+        fontweight: 'normal'
+      })
+    </script>
+
+  </body>
 </html>
