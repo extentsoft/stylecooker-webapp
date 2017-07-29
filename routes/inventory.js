@@ -13,6 +13,8 @@ router.get('/edit', function(req,res){
   res.render('edit_item',{title: 'Edit Item'});
 });
 
+
+
 router.get('/query', function(req,res){
   res.render('query', {title: 'Item Search Result'});
 });
