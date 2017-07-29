@@ -1,8 +1,85 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://v4-alpha.getbootstrap.com/examples/sticky-footer-navbar/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="../stylesheets/btn-breadcrumb.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
   </head>
   <body>
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-warning">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+         <img src="../images/logo.jpg" width="40" height="40" class="d-inline-block align-top" alt="">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/console">Console</a>
+          <a class="nav-item nav-link" href="/sales">Sales <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/inventory">Inventory</a>
+          <a class="nav-item nav-link disabled" href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <!-- work flow in breadcrumb style -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h6>Working Process</h6>
+          <div class="btn-group btn-breadcrumb">
+              <a href="/sales/catalog" class="btn btn-warning">
+                <i class="fa fa-home fa-lg"></i>
+              </a>
+              <a href="/sales/reservation" class="btn btn-warning">Reservation</a>
+              <a href="/sales/shipping" class="btn btn-warning">Shipping</a>
+              <a href="/sales/history" class="btn btn-secondary">History</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="container">
+      <!-- print shipping -->
+    </div>
+
+    <!--
+    <footer class="footer bg-inverser bg-warning">
+      <div class="container">
+        <span class="text-muted">StyleCooker Co.,Ltd.</span>
+      </div>
+    </footer>
+    -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!-- Helper Libraries -->
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/anchor.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/clipboard.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/holder.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/assets/js/vendor/jekyll-search.min.js"></script>
+
+    <!-- Initial Script to Enable Helper Libraries -->
+    <script>
+      /*SimpleJekyllSearch.init({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        searchResultTemplate: '<a class="dropdown-item" href="{url}">{title}</a>',
+        noResultsText: '<div class="dropdown-item no-results">Sorry, there are no results for that search.</div>',
+        json: '/search.json'
+      })*/
+    </script>
+    <script>
+      Holder.addTheme('gray', {
+        bg: '#777',
+        fg: 'rgba(255,255,255,.75)',
+        font: 'Helvetica',
+        fontweight: 'normal'
+      })
+    </script>
   </body>
 </html>
