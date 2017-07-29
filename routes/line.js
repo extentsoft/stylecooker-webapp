@@ -1,5 +1,6 @@
 function LINE(models){
-
+  var this._db = new loki('loki.json');
+  var this.line_log = this._db.addCollection('line_log');
 }
 
 LINE.prototype.webhookCallback = function(req,res){
@@ -17,7 +18,7 @@ LINE.prototype.webhookCallback = function(req,res){
   var sender = r_source.userId
 
   if(r_message.type == 'image'){
-    sendText(sender, "Image is analizing")
+    sendText(sender, "Image is analyzing")
   }
   else if( r_message.type == 'sticker' ){
     sendS(sender)
@@ -35,6 +36,15 @@ LINE.prototype.webhookCallback = function(req,res){
 
     trapRequest(sender,text);
   }
+
+  this.line_log.insert({
+    replyTokay: r_replyToken,
+    type: r_type,
+    timestamp: r_timestamp,
+    source: r_source,
+    message: r_message
+  });
+
   res.sendStatus(200);
 };
 
