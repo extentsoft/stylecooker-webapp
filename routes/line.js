@@ -1,6 +1,9 @@
+
+
+var loki = require('lokijs');
 function LINE(models){
-  var this._db = new loki('loki.json');
-  var this.line_log = this._db.addCollection('line_log');
+  this._db = new loki('loki.json');
+  this.line_log = this._db.addCollection('line_log');
 }
 
 LINE.prototype.webhookCallback = function(req,res){
