@@ -18,6 +18,9 @@ var LINEObject = require('./routes/line');
 var line = new LINEObject({});
 var FacebookObject = require('./routes/facebook');
 var facebook = new FacebookObject({});
+
+var api = require('./routes/api');
+
 var app = express();
 
 // view engine setup
@@ -40,8 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/inventory', inventory);
 app.use('/sales', sales);
 app.use('/console', console);
+app.use('/api', api);
+
 app.post('/webhook', line.webhookCallback);
 app.get('/facebook', facebook.webhookCallback);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
