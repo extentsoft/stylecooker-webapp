@@ -14,7 +14,10 @@ var users = require('./routes/users');
 var inventory = require('./routes/inventory');
 var sales = require('./routes/sales');
 var console = require('./routes/console');
-
+var LINEObject = require('./routes/line');
+var line = new LINEObject({});
+var FacebookObject = require('./routes/facebook');
+var facebook = new FacebookObject({});
 var app = express();
 
 // view engine setup
@@ -37,6 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/inventory', inventory);
 app.use('/sales', sales);
 app.use('/console', console);
+app.post('/webhook', line.webhookCallback);
+app.get('/facebook', facebook.webhookCallback);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
