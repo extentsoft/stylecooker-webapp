@@ -80,7 +80,10 @@
         </div>
         <div class="col-8">
           <div class="input-group">
-            <input type="text" class="form-control" style="padding: 3px 5px;" placeholder="Search for ...">
+
+
+
+            <input type="text" class="form-control searchbox-input" style="padding: 3px 5px;" placeholder="Search for ...">
             <span class="input-group-btn">
               <button class="btn btn-secondary" style="padding: 3px 5px;" type="button">Search</button>
             </span>
@@ -258,6 +261,16 @@
       })
     </script>
     <script>
+      $('input.form-control.searchbox-input').change(function(){
+        $('.card').show();
+        if($(this).val() != ""){
+          var filter = $(this).val();
+          $('.container').find("input.form-control.editItemName[value!='" + filter + "']" ).parent().parent().parent().css('display','none');
+          //$('.container').find("input.form-control.editItemName:not(:contains(" + filter + "))").parent().parent().parent().css('display','none');
+        }
+
+      });
+
       $(".btn-edit-item").click(function(){
         $.ajax({
           method: "PUT",
