@@ -1,6 +1,11 @@
 # stylecooker-webapp
 StyleCooker Web Application
 
+# Status
+/ Inventory
+  Sales
+  Console
+
 # Naming Convention
 * develop
 * master
