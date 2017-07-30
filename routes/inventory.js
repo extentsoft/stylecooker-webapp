@@ -1,8 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
 router.get('/', function(req,res){
-  res.render('inventory',{title: 'Inventory'});
+
+
+  var options = {
+    host: 'http://localhost',
+    port: 3000,
+    path: '/api/item',
+    method: 'GET'
+  };
+
+  request.get('http://localhost:3000/api/item', function (error, response, body) {
+    if (error) {
+      throw error;
+    }
+    const data = JSON.parse(body);
+    console.log(data);
+    console.log(data.items.length);
+    res.render('inventory',{
+      'title': 'Inventory',
+      'items': data.items
+    });
+  });
 });
 
 router.get('/add', function(req,res){

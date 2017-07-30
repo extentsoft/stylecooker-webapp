@@ -1,20 +1,5 @@
 var express = require('express');
 var router = express.Router();
-<<<<<<< HEAD
-
-/* [GET /api/item ] - Get all items */
-router.get('/item', function(req,res){
-
-})
-
-/* [POST /api/item ] - Create a new item */
-router.post('/item', function(req,res){
-  res.send(200);
-});
-
-=======
-var loki = require('lokijs'),
-  db = new loki('stylecooker.json');
 
 var MongoObject = require('mongodb');
 var mongo = MongoObject.MongoClient;
@@ -24,7 +9,7 @@ var db;
 mongo.connect('mongodb://scadmin:123456@ds159892.mlab.com:59892/stylecooker',function(err,database){
   if(err) console.log('Database link down');
 
-  console.log('Connect Success');
+  //console.log('Connect Success');
   db = database;
 });
 
@@ -37,7 +22,7 @@ router.get('/item', function(req,res){
   var itemObj = db.collection('items');
 
   itemObj.find({}).toArray(function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send({items: docs});
   });
 });
@@ -47,7 +32,7 @@ router.get('/item/:id', function(req,res){
   var itemObj = db.collection('items');
 
   itemObj.find({sku:req.params.id}).toArray(function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send({items: docs});
   });
 
@@ -75,12 +60,13 @@ router.put('/item/:id', function(req,res){
         amount_s: req.body.amount_s,
         amount_m: req.body.amount_m,
         amount_l: req.body.amount_l,
-        amount_xl: req.body.amount_xl
+        amount_xl: req.body.amount_xl,
+        selling_price: req.body.selling_price
       }
     }, function(err,result){
       if(err) return console.log(err);
 
-      console.log('Update Success');
+      //console.log('Update Success');
       res.send(200);
     }
   );
@@ -91,7 +77,7 @@ router.delete('/item/:id', function(req,res){
   var itemObj = db.collection('items');
 
   itemObj.deleteOne({sku:req.params.id}, function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send(200);
   });
 });
@@ -105,7 +91,7 @@ router.get('/order', function(req,res){
   var orderObj = db.collection('orders');
 
   orderObj.find({}).toArray(function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send({orders: docs});
   });
 });
@@ -113,9 +99,9 @@ router.get('/order', function(req,res){
 /* [GET /api/order/id] - Get specific order */
 router.get('/order/:id', function(req,res){
   var orderObj = db.collection('orders');
-                     
+
   orderObj.find({_id:ObjectId(req.params.id)}).toArray(function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send({orders: docs});
   });
 
@@ -123,7 +109,7 @@ router.get('/order/:id', function(req,res){
 
 /* [POST /api/order] - Create a new order */
 router.post('/order', function(req,res){
-  console.log(req.body);
+  //console.log(req.body);
   db.collection('orders').save(req.body, function(err,result){
     if(err) return console.log(err);
 
@@ -148,7 +134,7 @@ router.put('/order/:id', function(req,res){
     }, function(err,result){
       if(err) return console.log(err);
 
-      console.log('Update Success');
+      //console.log('Update Success');
       res.send(200);
     }
   );
@@ -159,10 +145,9 @@ router.delete('/order/:id', function(req,res){
   var orderObj = db.collection('orders');
 
   orderObj.deleteOne({_id:ObjectId(req.params.id)}, function(err, docs) {
-    console.log(docs);
+    //console.log(docs);
     res.send(200);
   });
 });
->>>>>>> develop
 
 module.exports = router;

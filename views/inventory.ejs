@@ -31,38 +31,51 @@
           <h3>New Item</h3>
           <form>
             <div class="form-group">
-              <label for="itemNameInput">Item Name</label>
-              <input type="text" class="form-control" id="itemNameInput" aria-describedby="itemNameHelp">
-              <small id="itemNameHelp" class="form-text text-muted">Type Item Name</small>
+              <label for="newItemName">Item Name</label>
+              <input type="text" class="form-control" id="newItemName" aria-describedby="newItemNameHelp">
+              <small id="newItemNameHelp" class="form-text text-muted">Type Item Name</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputFile">Featured Image</label>
-              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-              <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+              <label for="newItemImage">Featured Image</label>
+              <input type="file" class="form-control-file" id="newItemImage" aria-describedby="newItemImageHelp">
+              <small id="newItemImageHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
             </div>
 
             <div class="form-group row">
-              <label for="example-color-input" class="col-2 col-form-label">Color</label>
+              <label for="newItemColor" class="col-2 col-form-label">Color</label>
               <div class="col-10">
-                <input class="form-control" type="color" value="#563d7c" id="example-color-input">
+                <input class="form-control" type="color" value="#563d7c" id="newItemColor">
               </div>
             </div>
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2">SKU</span>
+              <input type="text" class="form-control" id="newItemSKU" placeholder="SKU" aria-describedby="sizing-addon2">
+            </div>
+            <br>
+            <div class="input-group">
+              <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-btc" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" id="newItemPrice" placeholder="Selling Price" aria-describedby="sizing-addon2">
+            </div>
+            <br>
             <label>Initial Inventory</label>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">#</span>
-              <input type="text" class="form-control" id="amount_xs" placeholder="XS" aria-describedby="sizing-addon2">
-              <input type="text" class="form-control" id="amount_s" placeholder="S" aria-describedby="sizing-addon2">
-              <input type="text" class="form-control" id="amount_m" placeholder="M" aria-describedby="sizing-addon2">
-              <input type="text" class="form-control" id="amount_l" placeholder="L" aria-describedby="sizing-addon2">
-              <input type="text" class="form-control" id="amount_xl" placeholder="XL" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="newItemXS" placeholder="XS" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="newItemS" placeholder="S" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="newItemM" placeholder="M" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="newItemL" placeholder="L" aria-describedby="sizing-addon2">
+              <input type="text" class="form-control" id="newItemXL" placeholder="XL" aria-describedby="sizing-addon2">
             </div>
             <br/>
+            <!-- https://bootsnipp.com/snippets/B2yPB
             <label>Portfolio Images</label>
             <div class="input-group">
               <input type="file" class="form-control" id="images" name="images[]" onchange="preview_images();" multiple/>
               &nbsp;&nbsp;<input type="submit" class="btn btn-secondary" style="padding: 3px 5px;" name="submit_image" value="Upload" />
             </div>
             <div class="row" id="image_preview"></div>
+            -->
+            <button type="button" class="btn btn-warning" id="btn-create-item">Create</button>
           </form>
         </div>
         <div class="col-8">
@@ -74,8 +87,47 @@
           </div>
 
           <br/>
-
           <!-- print catalog in card-group -->
+          <% for(var i=0; i<items.length; i++){ %>
+            <% if( i%3 == 0) { %>
+            <div class="card-group">
+            <% } %>
+
+              <div class="card">
+                <img class="card-img-top mx-auto" width="150" height="150" src="../images/<%= items[i].sku%>.jpg" alt="Card image cap">
+                <small class="text-muted mx-auto"><%= items[i].sku%></small>
+                <div class="card-block">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">Name</span>
+                    <input type="text" class="form-control editItemName" placeholder="<%= items[i].name %>" value="<%= items[i].name %>" aria-describedby="sizing-addon2">
+                  </div>
+                  <br />
+                  <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-btc" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control editItemSellingPrice" placeholder="<%= items[i].selling_price %>" value="<%= items[i].selling_price %>" aria-describedby="sizing-addon2">
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon2">#</span>
+                        <input type="text" class="form-control editItemXS" id="amount_xs" placeholder="<%= items[i].amount_xs %>" value="<%= items[i].amount_xs %>" aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control editItemS" id="amount_s" placeholder="<%= items[i].amount_s %>" value="<%= items[i].amount_s %>" aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control editItemM" id="amount_m" placeholder="<%= items[i].amount_m %>" value="<%= items[i].amount_m %>" aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control editItemL" id="amount_l" placeholder="<%= items[i].amount_l %>" value="<%= items[i].amount_l %>" aria-describedby="sizing-addon2">
+                        <input type="text" class="form-control editItemXL" id="amount_xl" placeholder="<%= items[i].amount_xl %>" value="<%= items[i].amount_xl %>" aria-describedby="sizing-addon2">
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-text"><small class="text-muted">XS | S | M | L | XL</small></p>
+                  <button type="button" class="btn btn-warning btn-edit-item">Save</button>
+                </div>
+              </div>
+          <% if( i%3 == 0 && i>0) { %>
+            </div>
+          <% } %>
+          <% } %>
+<!--
           <div class="card-group">
             <div class="card">
               <img class="card-img-top mx-auto" src="holder.js/150x150" alt="Card image cap">
@@ -126,7 +178,7 @@
               <div class="card-block">
                 <h4 class="card-title">Card title</h4>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <!--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+
               </div>
             </div>
             <div class="card">
@@ -173,11 +225,11 @@
             </div>
 
         </div>
-      </div>
+      </div>-->
       <br/>
 
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
@@ -205,6 +257,83 @@
         fontweight: 'normal'
       })
     </script>
+    <script>
+      $(".btn-edit-item").click(function(){
+        $.ajax({
+          method: "PUT",
+          url: "http://localhost:3000/api/item/" + $(this).parent().prev().text() ,
+          data: {
+            name: $(this).prev().prev().prev().prev().prev().prev().find("input.form-control.editItemName").val(),
+            amount_xs: $(this).prev().prev().find("input.form-control.editItemXS").val(),
+            amount_s: $(this).prev().prev().find("input.form-control.editItemS").val(),
+            amount_m: $(this).prev().prev().find("input.form-control.editItemM").val(),
+            amount_l: $(this).prev().prev().find("input.form-control.editItemL").val(),
+            amount_xl: $(this).prev().prev().find("input.form-control.editItemXL").val(),
+            selling_price: $(this).prev().prev().prev().prev().find("input.form-control.editItemSellingPrice").val()
+          }
+        })
+        .done(function( msg ) {
+          alert( "Data Saved: " + msg );
+          location.reload();
+        });
 
+      });
+
+      $("#btn-create-item").click(function(){
+
+        //,newItemImage,newItemColor,newItemSKU,newItemPrice,newItemXS
+
+        var params = {
+          sku: $('#newItemSKU').val(),
+          name: $('#newItemName').val(),
+          color: '',
+          amount_xs: $('#newItemXS').val(),
+          amount_s: $('#newItemS').val(),
+          amount_m: $('#newItemM').val(),
+          amount_l: $('#newItemL').val(),
+          amount_xl: $('#newItemXL').val(),
+          selling_price: $('#newItemPrice').val()
+        };
+
+        $.ajax({
+          method: "POST",
+          url: "http://localhost:3000/api/item",
+          data: {
+            sku: $('#newItemSKU').val(),
+            name: $('#newItemName').val(),
+            color: '',
+            amount_xs: $('#newItemXS').val(),
+            amount_s: $('#newItemS').val(),
+            amount_m: $('#newItemM').val(),
+            amount_l: $('#newItemL').val(),
+            amount_xl: $('#newItemXL').val(),
+            selling_price: $('#newItemPrice').val()
+          }
+        })
+        .done(function( msg ) {
+          alert( "Data Saved: " + msg );
+          location.reload();
+        });
+
+/*
+        $.ajax({
+          type: "POST",
+          url: "http://localhost:3000/api/item",
+          data: JSON.stringify(params),
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (data, status, jqXHR) {
+             alert("Yah");
+           },
+
+           error: function (jqXHR, status) {
+             // error handler
+             alert("oh");
+           }
+        });
+*/
+
+      });
+    </script>
   </body>
 </html>
